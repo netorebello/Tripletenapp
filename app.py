@@ -14,3 +14,4 @@ fig = px.histogram(car_data, x="odometer")
      
 # exibir um gráfico Plotly interativo
 st.plotly_chart(fig, use_container_width=True)
+
