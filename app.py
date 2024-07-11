@@ -46,8 +46,11 @@ if manufacturer_1 and manufacturer_2:
     filtered_data_1 = data[data['model'] == manufacturer_1]
     filtered_data_2 = data[data['model'] == manufacturer_2]
 
-    fig_price_comparison_1 = px.histogram(filtered_data_1, x='price', title=f'Preços do {manufacturer_1}')
-    fig_price_comparison_2 = px.histogram(filtered_data_2, x='price', title=f'Preços do {manufacturer_2}')
+    # Adicionar coluna 'Modelo' para diferenciar os dados
+    filtered_data_1['Modelo'] = manufacturer_1
+    filtered_data_2['Modelo'] = manufacturer_2
 
-    st.plotly_chart(fig_price_comparison_1)
-    st.plotly_chart(fig_price_comparison_2)
+    combined_data = pd.concat([filtered_data_1, filtered_data_2])
+
+    fig_price_comparison = px.histogram(combined_data, x='price', color='Modelo', barmode='overlay', title='Comparação de Preços entre Modelos')
+    st.plotly_chart(fig_price_comparison)
