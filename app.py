@@ -52,5 +52,12 @@ if manufacturer_1 and manufacturer_2:
 
     combined_data = pd.concat([filtered_data_1, filtered_data_2])
 
+if st.button('Mostrar Histograma Comparativo de Preços'):
     fig_price_comparison = px.histogram(combined_data, x='price', color='Modelo', barmode='overlay', title='Comparação de Preços entre Modelos')
+    
     st.plotly_chart(fig_price_comparison)
+    
+if st.button('Mostrar Gráfico de Dispersão Comparativo'):
+    fig_scatter_comparison = px.scatter(combined_data, x='odometer', y='price', color='Modelo', title='Comparação de Preços entre Modelos')
+    
+    st.plotly_chart(fig_scatter_comparison)
